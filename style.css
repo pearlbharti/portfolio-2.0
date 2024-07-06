@@ -1,0 +1,261 @@
+:root {
+    --background-color: rgb(1, 1, 31);
+    --border-color: rgb(255, 255, 255, 0.1);
+    --highlight-color: rgb(126, 87, 194);
+    --yt-color: rgb(229, 57, 53);
+}
+  
+body {
+  background: linear-gradient(180deg, #0d1117, #161b22, #21262d, #24282d);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0; /* Remove duplicate margin property */
+  overflow: hidden;
+  align-items: center;
+  padding: 0;
+}
+  
+* {
+  box-sizing: border-box;
+}
+
+
+
+h1, h2, h3, a, p, span {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  color: #FEFFEF;
+  margin: 0px;
+}
+  
+a {
+  text-decoration: none;
+}
+ 
+a:hover {
+  color: var(--highlight-color);
+}
+  
+nav {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+}
+  
+nav .nav-section {
+  padding: 2rem 2rem;
+  display: flex;
+  gap: 1rem;
+  border-left: 1px solid var(--border-color);
+  align-items: center;
+  justify-content: center;
+}
+  
+#nav-mobile-section {
+  display: flex;
+  flex-basis: calc(100% * (2 / 3));
+  z-index: 2;
+}
+  
+#nav-toggle-button { 
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-left: 1px solid var(--border-color);
+  color: white;
+  cursor: pointer;
+  display: none;
+  gap: 0.8rem;
+  height: 100%;
+  justify-content: center;
+  outline: none;
+  padding: 0rem 3rem;
+  position: relative;
+  z-index: 3;
+}
+  
+#nav-toggle-button:hover,
+#nav-toggle-button:hover > span {
+  color: var(--highlight-color);
+}
+  
+#nav-toggle-button > span,
+#nav-toggle-button > i { 
+  display: inline-block;
+  height: 1rem;
+  line-height: 1rem;
+}
+  
+#nav-social-section,
+#nav-contact-section {
+  flex-grow: 1;
+}
+ 
+#nav-logo-section {
+  flex-basis: calc(100% / 3);
+  justify-content: flex-start;
+  padding-left: 1rem;  /* Padding only on the left */
+  padding-right: 1rem; /* Padding only on the right */
+  padding-top: 0;      /* Ensure there is no padding at the top */
+  padding-bottom: 0; 
+
+
+}
+  
+#nav-logo-section > a > img {
+  height: 40px; /* Set the height of the logo */
+  /* You can add more styles as needed */
+}
+  
+#nav-link-section {
+  flex-basis: 50%;
+  gap: 6rem; 
+}
+  
+#nav-social-section {
+  gap: 3rem;
+}
+
+#anchor{
+  position: relative; 
+  right: -250px; 
+  
+}
+  
+main {
+  display: grid;
+  place-items: center;
+  min-height: 100vh; 
+  position: relative;
+}
+
+.container {
+  position: absolute; /* Adjust position as needed */
+  text-align: left;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wave {
+  animation: wave-animation 2s infinite;
+  display: inline-block;
+  margin-right: 20px; /* Adjust as needed */
+}
+
+.wave img {
+  width: 80px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.wave img path {
+  stroke: #fff; /* Change icon color to white */
+}
+
+.intro-container {
+  text-align: center;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.intro-text {
+  color: #888888; /* Initial color */
+  font-size: 2em; /* Adjust size as needed */
+  font-weight: bold; /* Adjust weight as needed */
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.intro-text:hover {
+  color: #ffffff; /* Color on hover */
+  transform: scale(1.1); /* Pop effect */
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
+}
+
+.hand-wave {
+  font-size: 3em;
+  margin-bottom: 20px;
+  animation: wave 2s infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(20deg); }
+}
+
+@keyframes wave-animation {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+#eyes, #eyes img {
+  position: absolute;
+}
+
+@media(min-width:1024px){
+  #eye1{
+    top: -116px;
+    left: 236px;
+}
+  #eye2{
+    top: -115px;
+    left: 176px;
+  }
+  #eye3{
+    top: 68px;
+    left: 250px;
+
+  }
+  #eye4{
+    top: 85px;
+    left: 293px;
+  }
+}
+
+@media (max-width:1023px) and (min-width:768px){
+  #eye1{
+    top: -116px;
+    left: 239px;
+  }
+  #eye2{
+    top: -115px;
+    left: 176px;
+  }
+  #eye3{
+    top: 68px;
+    left: 250px;
+
+  }
+  #eye4{
+    top: 85px;
+    left: 293px;
+
+  }}
+
+@media(max-width:767px){
+  #eye1{
+    top: -115px;
+    left: 283px;
+  }
+  #eye2{
+    top: -116px;
+    left: 346px;
+  }
+  #eye3{
+    top: 70px;
+    left: 357px;
+  }
+  #eye4{
+    top: 85px;
+    left: 399px
+  }}
+
+    
