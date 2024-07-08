@@ -120,6 +120,7 @@ document.addEventListener('mousemove', function (e) {
 function lerp(start, end, amount) {
   return (1 - amount) * start + amount * end
 }
+// hi pearl
 
 function loop() {
   if (cursorX !== pageX || cursorY !== pageY) {
