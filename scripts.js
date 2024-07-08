@@ -6,14 +6,14 @@ const slides = document.getElementsByTagName("article");
 
 const handleLeftClick = () => {
   const nextIndex = activeIndex - 1 >= 0 ? activeIndex - 1 : slides.length - 1;
-  
+
   const currentSlide = document.querySelector(`[data-index="${activeIndex}"]`),
-        nextSlide = document.querySelector(`[data-index="${nextIndex}"]`);
-        
+    nextSlide = document.querySelector(`[data-index="${nextIndex}"]`);
+
   currentSlide.dataset.status = "after";
-  
+
   nextSlide.dataset.status = "becoming-active-from-before";
-  
+
   setTimeout(() => {
     nextSlide.dataset.status = "active";
     activeIndex = nextIndex;
@@ -22,14 +22,14 @@ const handleLeftClick = () => {
 
 const handleRightClick = () => {
   const nextIndex = activeIndex + 1 <= slides.length - 1 ? activeIndex + 1 : 0;
-  
+
   const currentSlide = document.querySelector(`[data-index="${activeIndex}"]`),
-        nextSlide = document.querySelector(`[data-index="${nextIndex}"]`);
-  
+    nextSlide = document.querySelector(`[data-index="${nextIndex}"]`);
+
   currentSlide.dataset.status = "before";
-  
+
   nextSlide.dataset.status = "becoming-active-from-after";
-  
+
   setTimeout(() => {
     nextSlide.dataset.status = "active";
     activeIndex = nextIndex;
@@ -42,9 +42,9 @@ const handleRightClick = () => {
 
 const nav = document.querySelector("nav");
 
-const handleNavToggle = () => {  
+const handleNavToggle = () => {
   nav.dataset.transitionable = "true";
-  
+
   nav.dataset.toggled = nav.dataset.toggled === "true" ? "false" : "true";
 }
 
@@ -54,32 +54,6 @@ window.matchMedia("(max-width: 800px)").onchange = e => {
   nav.dataset.toggled = "false";
 };
 
-// script.js
-const cursor = document.querySelector('.custom-cursor');
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-
-document.addEventListener('mousemove', function(e) {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursor.style.opacity = 1;
-});
-
-document.addEventListener('mouseleave', function() {
-  cursor.style.opacity = 0; // Hide cursor when mouse leaves the window
-});
-
-document.addEventListener('mouseenter', function() {
-  cursor.style.opacity = 1; // Show cursor when mouse enters the window
-});
-
-function animateCursor() {
-  cursorX += (mouseX - cursorX) * 0.1;
-  cursorY += (mouseY - cursorY) * 0.1;
-  cursor.style.transform = `translate(${cursorX - 25}px, ${cursorY - 25}px)`;
-  requestAnimationFrame(animateCursor); // Call itself for smooth animation
-}
-animateCursor(); // Start the animation loop
 
 const eyes = document.querySelectorAll('#eyes img')
 const anchor = document.getElementById('anchor')
@@ -96,22 +70,64 @@ document.addEventListener('mousemove', (e) => {
 
   console.log(angleDeg)
 
-  
-  eyes.forEach(eye =>{
-    eye.style.transform =  `rotate(${90 + angleDeg}deg)`;
+
+  eyes.forEach(eye => {
+    eye.style.transform = `rotate(${90 + angleDeg}deg)`;
     anchor.style.filter = `hue-rotate(${angleDeg}deg)`;
 
   })
 
 })
 
-function angle(cx, cy,ex,ey){
-  const dy = ey-cy;
-  const dx = ex-cx;
+function angle(cx, cy, ex, ey) {
+  const dy = ey - cy;
+  const dx = ex - cx;
   const rad = Math.atan2(dy, dx);
-  const deg = rad*180 / Math.PI;
+  const deg = rad * 180 / Math.PI;
   return deg;
-  
+
 }
 
+// Cursor
 
+const cursor = document.createElement('div');
+cursor.className = 'cursor';
+document.body.appendChild(cursor);
+
+const cursorF = document.createElement('div');
+cursorF.className = 'cursor-f';
+cursor.appendChild(cursorF);
+
+let cursorX = 0;
+let cursorY = 0;
+let pageX = 0;
+let pageY = 0;
+
+document.addEventListener('mouseleave', function () {
+  cursor.classList.add('hidden');
+});
+
+document.addEventListener('mouseenter', function () {
+  cursor.classList.remove('hidden');
+});
+
+document.addEventListener('mousemove', function (e) {
+  pageX = e.clientX;
+  pageY = e.clientY;
+  gsap.to(cursor, { duration: .01, left: e.clientX - 4, top: e.clientY - 4 });
+});
+
+function lerp(start, end, amount) {
+  return (1 - amount) * start + amount * end
+}
+
+function loop() {
+  if (cursorX !== pageX || cursorY !== pageY) {
+    cursorX = lerp(cursorX, pageX, .2);
+    cursorY = lerp(cursorY, pageY, .2);
+    gsap.to(cursorF, { duration: .01, left: cursorX - 10, top: cursorY - 10 });
+  }
+  requestAnimationFrame(loop);
+}
+
+loop();

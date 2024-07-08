@@ -258,4 +258,61 @@ main {
     left: 399px
   }}
 
+  @keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  cursor: none;
+}
+
+
+  .cursor {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #eae3cf;
+  /* background: #000; */
+  mix-blend-mode: hard-light;
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  transition: opacity .4s;
+  top: -30px;
+  left: -30px;
+}
+
+.cursor-f {
+  position: fixed;
+  border-radius: 50%;
+  border: 1px dashed #eae3cf;
+  /* background: rgba(255, 255, 255, 0.6); */
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  animation: spin 2.6s linear infinite paused;
+  transition: background-color .3s;
+  --next: 0;
+  --prev: 0;
+}
+
+.cursor.clicked .cursor-f {
+  background-color: rgba(234, 227, 207, 0.12);
+}
+
+.cursor.hidden {
+  opacity: 0;
+}
+
+
+
+
     
