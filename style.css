@@ -23,7 +23,7 @@ body {
 }
 
 
-h1, h2, h3, a, p, span {
+a{
   font-family: "Rubik", sans-serif;
   font-weight: 400;
   color: #FEFFEF;
@@ -100,6 +100,7 @@ nav .nav-section {
   position: static;
   top: auto;
   left: auto;
+  color:white;
   transform: none;
 }
 
@@ -289,7 +290,7 @@ main {
 
 *, *::after, *::before {
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: white;
   outline: none;
   cursor: none;
 }
