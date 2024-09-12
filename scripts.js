@@ -136,17 +136,20 @@ loop();
 /*--toggle bg--*/
 const toggle = document.getElementById('toggleDark');
 const body = document.querySelector('body');
-const navbarlink = document.querySelector('a')
+const navbarLinks = document.querySelectorAll('#navbar1 a'); // Select all anchor tags within the navbar
 
-toggle.addEventListener('click', function(){
-    this.classList.toggle('bi-moon');
-    if(this.classList.toggle('bi-brightness-high-fill')){
-        body.style.background = 'white';
-        navbarlink.style.color = 'black';
-        body.style.transition = '2s';
-    }else{
-        body.style.background = 'black';
-        navbarlink.style.color = 'white';
-        body.style.transition = '2s';
-    }
+toggle.addEventListener('click', function () {
+  this.classList.toggle('bi-moon');
+  const isLightMode = this.classList.toggle('bi-brightness-high-fill');
+
+  // Set background and link colors based on the mode
+  if (isLightMode) {
+    body.style.background = 'white';
+    navbarLinks.forEach(link => link.style.color = 'black'); // Change color to black for light mode
+    body.style.transition = '2s';
+  } else {
+    body.style.background = 'black';
+    navbarLinks.forEach(link => link.style.color = 'white'); // Change color to white for dark mode
+    body.style.transition = '2s';
+  }
 });
